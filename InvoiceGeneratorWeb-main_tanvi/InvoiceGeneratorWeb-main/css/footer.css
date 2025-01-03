@@ -1,0 +1,96 @@
+.footer-content {
+    font-size: 15px;
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+    justify-content: center;
+    text-align: center;
+    display: flex; 
+    
+}
+.footer-content:hover {
+    font-size: 15px;
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+    
+    
+    
+}
+.hyper-link {
+  text-decoration: none;
+    justify-content: center;
+    text-align: center;
+    display: flex; 
+  text-decoration: none;
+}
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: rgb(122 199 203);
+}
+.footer-invoice{
+    width: 100%;
+    background-color: rgba(3, 6, 49, 0.3);
+}
+.footer-workorder{
+    width: 100%;
+    background-color: rgba(3, 6, 49, 0.3);
+}
+.footer-success{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(3, 6, 49, 0.3);
+}
+.footer-login{
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: rgb(185, 182, 182);
+    /* position: fixed; */
+}
+
+
+
+/* back btn */
+.back-btn {
+    border-radius: 20px;
+    border: 1px solid #0c49a4;
+    background-color: #0c49a4;
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+  }
+
+  .back-btn:active {
+    transform: scale(0.95);
+  }
+
+  .back-btn:focus {
+    outline: none;
+  }
+
+  .back-btn {
+    margin: 12px;
+    margin-bottom: -10%;
+    /* margin-right: 690px; */
+    font-size: 9px;
+    font-weight: light;
+    padding: 8px;
+    letter-spacing: 1px;
+  }
+
+  .green-btn {
+    border: 1px solid #069A8E; 
+    background-color: #069A8E;
+  }

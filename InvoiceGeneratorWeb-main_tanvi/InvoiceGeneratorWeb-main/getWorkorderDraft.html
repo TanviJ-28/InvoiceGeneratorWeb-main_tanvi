@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WorkOrder</title>
+  <link rel="icon" href="/images/logo_transparent.png" type="image/icon type">
+  <!-- Favicons -->
+
+  <!-- CSS only -->
+  <!-- <link rel="stylesheet" href="css/font-awesome.css"> -->
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+
+  <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script> -->
+
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <script src="js/jquery-3.6.1.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="scripts/invoice.js"></script>
+  <script src="scripts/url.js"></script>
+  <script src="scripts/workorder.js"></script>
+  <script src="scripts/index.js"></script>
+
+  <style>
+    @media (min-width: 1024px) {
+      #add-company {
+        margin-left: 27rem !important;
+      }
+
+      #login-link {
+        margin-left: 48rem !important;
+      }
+    }
+  </style>
+
+  <style>
+    .blink {
+      background-color: #1c87c9;
+      -webkit-border-radius: 60px;
+
+    }
+
+    @keyframes glowing {
+      0% {
+        background-color: #56debe;
+        box-shadow: 0 0 5px #56debe;
+      }
+      50% {
+        background-color: #2db6aa;
+        box-shadow: 0 0 20px #2db6aa;
+      }
+      100% {
+        background-color: #56debe;
+        box-shadow: 0 0 5px #56debe;
+      }
+    }
+    .blink {
+      animation: glowing 1300ms infinite;
+    }
+
+    .icon {
+      margin-top: 25px;
+      margin-left: 88rem;
+    }
+        /* media query info button*/
+        @media (min-width:1601px) and (max-width:2000px){
+      .icon {
+            margin-top: 25px;
+            margin-left: 80%;
+          }
+    }
+        @media (min-width:1421px) and (max-width:1600px){
+      .icon {
+            margin-top: 25px;
+            margin-left: 89%;
+          }
+    }
+    @media (min-width:1100px) and (max-width:1420px){
+      .icon {
+            margin-top: 25px;
+            margin-left: 88%;
+          }
+    }
+    @media (min-width:400px) and (max-width:1099px){
+      .icon {
+            margin-top: 25px;
+            margin-left: 88%;
+          }
+    }
+    @media (min-width:200px) and (max-width:400px){
+      .icon {
+            margin-top: 25px;
+            margin-left: 88%;
+          }
+    }
+  </style>
+<script>
+  function checkLogin() {
+  var tokenName = localStorage.getItem('token');
+  console.log(tokenName);
+  
+  if (tokenName === null) {
+          document.getElementById('workorderdraft').style.visibility = 'hidden';
+      } else {
+          document.getElementById('workorderdraft').style.visibility = 'visible';
+      }
+}
+
+  window.addEventListener('DOMContentLoaded', function() {
+    checkLogin();
+  });
+
+  </script>
+</head>
+
+<body onload="getWorkorderDraftById()">
+
+  <!-- Navigation Bar Strats -->
+  <nav class="navbar navigation navbar-expand-lg navbar-light navbar-css">
+    <a href="http://invoices4us-dev.s3-website-us-east-1.amazonaws.com/">
+      <img src="/images/Invoices4Us-logos_dark.png" alt="Home" style="width: 110px; height: 55px;">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link nav-hov active" style="color:#095e85;" href="index.html">Home</a>
+        <a class="nav-item nav-link nav-hov active" style="color:#095e85;" href="invoice.html">Generate Invoice</a>
+        <a class="nav-item nav-link nav-hov" style="color:#095e85;" href="workorder.html">Generate Work Order</a>
+        <a class="nav-item nav-link nav-hov active" style="color:#095e85;" href="invoiceRecord.html">Invoice History</a>
+        <a class="nav-item nav-link nav-hov" style="color:#095e85;" href="workorderRecord.html">Work Order History</a>
+      </div>
+      <div class="navbar-nav ml-auto">
+      </div>
+    </div>
+  </nav>
+  <button class="back-btn" onclick="history.back()"style=" border: 1px solid #069A8E; background-color: #069A8E;"> << Back</button>
+  <!--info button-->
+    <div class="icon">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle blink"
+        viewBox="0 0 16 16" id="myinfo" style=" margin-top: -10px;color: #1746A2;">
+        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+        <path
+          d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+      </svg>
+    </div>
+    <!---Info Button ends--->
+
+  <!-- Navigation Bar Ends -->
+  <div class="container" id="workorder-txt">
+    <section>
+      <div class="card" style="background-color: #EAEAEA;">
+        <div class="card-body">
+
+          <div class="my-invoice">
+            <div class="invoice overflow-auto" style="background-color:#DEF5E5">
+              <div style="min-width: 280px; background-color:#DEF5E5">
+                <main>
+                  <h1 class="work_order">WORK ORDER</h1>
+                  <div class="container dates" style="padding:0px;">
+                    <div class="date_info_container">
+                      <span id=" " class="date_info_text" style="background-color:#DEF5E5;">Work Order is valid
+                        From:<span class="required">*</span></span>
+                      <input id="workorderDate" class="form-control date_info_date" type="date"
+                        oninput="workorderErrorLess()" aria-label="Sizing example input"
+                        aria-describedby="inputGroup-sizing-sm" onkeypress="return /[]/i.test(event.key)">
+
+                      <span id="workorderError"></span>
+                      <span id="" class="date_info_text" style="background-color:#DEF5E5;">Upto:<span
+                          class="required">*</span></span>
+                      <input id="dayCount" class="form-control date_info_day" type="number"
+                         aria-label="Sizing example input"  oninput="handleDate()" 
+                        aria-describedby="inputGroup-sizing-sm" onkeypress="return /[0-9]/i.test(event.key)">
+                      <span id="" class="date_info_text" style="background-color:#DEF5E5;">Days</span>
+                      <span class="msgSpan" id="wo_date" style="margin-left: 2px;"></span>
+                    </div>
+
+                    <div class="unique">
+                      <div class="id" style="width: 50%;">
+                        <span class="input-group-text " style="background-color:#DEF5E5; margin-right:60px;">WorkOrder
+                          Id# <span class="required">* &nbsp;</span>
+                          <input
+                            style="width: 130px;font-size:20px;font-family:bold;padding-left: 0px;border-radius: 0px;border-color: black;"
+                            id="wo_unique_id" maxlength="15" oninput="workorderErrorLess()" class="form-control"
+                            onkeypress="return /[a-zA-Z0-9. ]/i.test(event.key)">
+                        </span>
+                      </div>
+                      <div style="text-align: right; margin-right: 22px;">
+                        <span class="msgSpan" id="msgID_err"></span>
+                      </div>
+                    </div>
+
+                  </div>
+                  <div class="row contacts">
+                    <div class="col-lg-6 col-md-12 col-sm-12 container left_one "
+                      style="margin-top: 5px; padding-top: 0px;">
+                      <h1 class="invoice_e" style="color: #069A8E;">WORKORDER FROM</h1>
+                      <div class="input-group title">
+                        <input id="companyName" type="text" class="form-control" oninput="workorderErrorLess()"
+                          aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg"
+                          placeholder="Your Company Name" style="text-align: left;width: 100px;"
+                          onkeypress="return /[a-zA-Z0-9. ]/i.test(event.key)">
+                          <input id="email" type="text" class="form-control" 
+                          aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"
+                          placeholder="generatedby@example.com" hidden>
+                      </div>
+                      <span id="msgSenderCompanyName" class="msgSpan"></span>
+
+                      <div class="input-group input-group-sm mb-3 middle-box email">
+                        <span class="input-group-text" id="inputGroup-sizing-sm"
+                          style="background-color:#DEF5E5;">Name<span class="required">*</span></span>
+                        <input id="contactName" type="text" class="form-control" oninput="workorderErrorLess()"
+                          aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"
+                          placeholder="Your Name Here" onkeypress="return /[a-zA-Z0-9. ]/i.test(event.key)">
+                      </div>
+                      <span id="msgSenderContactName" class="msgSpan"></span>
+
+                      <div class="input-group input-group-sm mb-3 middle-box email">
+                        <span class="input-group-text" id="inputGroup-sizing-sm"
+                          style="background-color:#DEF5E5;">Email<span class="required">*</span></span>
+                        <input id="sEmail" type="text" class="form-control" oninput="workorderErrorLess()"
+                          aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"
+                          placeholder="from@example.com" onkeypress="return /[a-zA-Z0-9@._. ]/i.test(event.key)">
+                      </div>
+                      <span id="msgSenderMail" class="msgSpan"> </span>
+
+                      <div class="input-group input-group-sm mb-3 middle-box phone ">
+                        <span class="input-group-text" id="inputGroup-sizing-sm"
+                          style="background-color:#DEF5E5;">Phone<span class="required"></span></span>
+
+                        <select name="countryCode" id="areaCode" class="form-control"
+                          style="max-width:35px;padding:0px;margin:0px;height:40px;text-align: left;font-size: smaller; border-radius: 0;"
+                          onchange="Selectr()">
+                          <option data-countryCode="IN" value="91"><span>+91 &nbsp;&nbsp;&nbsp; IND </span></option>
+                          <option data-countryCode="US" value="1">+1 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;USA</option>
+                         <!-- <option data-countryCode="US" value="44">+44 &nbsp;&nbsp;&nbsp;&nbsp; UK</option>
+                          <option data-countryCode="DZ" value="213">+213 &nbsp;&nbsp;&nbsp;Algeria</option>
+                          <option data-countryCode="AR" value="54">+54&nbsp;&nbsp;&nbsp;&nbsp;Argentina</option>
+                          <option data-countryCode="AU" value="61">+61 &nbsp;&nbsp;&nbsp;&nbsp; Australia</option>
+                          <option data-countryCode="AT" value="43">+43&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Austria</option>
+                          <option data-countryCode="BD" value="880">+880&nbsp;&nbsp;&nbsp;Bangladesh</option>
+                          <option data-countryCode="CA" value="1">+1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Canada</option>
+                          <option data-countryCode="CF" value="236">+236&nbsp;&nbsp;&nbsp;Central African Republic
+                          </option>
+                          <option data-countryCode="CN" value="86">+86&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;China</option>
+                          <option data-countryCode="DE" value="49">+49&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Germany</option>
+                          <option data-countryCode="HK" value="852">+852&nbsp;&nbsp;&nbsp;Hong Kong</option>
+                          <option data-countryCode="IS" value="354">+354&nbsp;&nbsp;&nbsp;Iceland</option>
+                          <option data-countryCode="ID" value="62">+62&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Indonesia</option>
+                          <option data-countryCode="IR" value="98">+98&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Iran</option>
+                          <option data-countryCode="IQ" value="964">+964&nbsp;&nbsp;&nbsp;Iraq</option>
+                          <option data-countryCode="IE" value="353">+353&nbsp;&nbsp;&nbsp;Ireland</option>
+                          <option data-countryCode="IL" value="972">+972&nbsp;&nbsp;&nbsp;Israel</option>
+                          <option data-countryCode="IT" value="39">+39&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Italy</option>
+                          <option data-countryCode="JM" value="1876"> +1876&nbsp;&nbsp;&nbsp; Jamaica</option>
+                          <option data-countryCode="NP" value="977"> +977&nbsp;&nbsp;&nbsp;Nepal</option>
+                          <option data-countryCode="NL" value="31"> +31&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Netherlands
+                          </option>
+                          <option data-countryCode="NZ" value="64"> +64&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;New Zealand
+                          </option>
+                          <option data-countryCode="QA" value="974"> +974&nbsp;&nbsp;&nbsp;Qatar</option>
+                          <option data-countryCode="RU" value="7"> +7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Russia</option>
+                          <option data-countryCode="SA" value="966"> +966&nbsp;&nbsp;&nbsp;Saudi Arabia</option>
+                          <option data-countryCode="SG" value="65"> +65&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Singapore</option>
+                          <option data-countryCode="ES" value="34"> +34&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Spain</option>
+                          <option data-countryCode="LK" value="94"> +94&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sri Lanka</option>
+                          <option data-countryCode="SZ" value="268"> +268&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Swaziland
+                          </option>
+                          <option data-countryCode="SE" value="46"> +46&nbsp;&nbsp;&nbsp;&nbsp;Sweden</option>
+                          <option data-countryCode="UA" value="380"> +380&nbsp;&nbsp;&nbsp;Ukraine</option>
+                          <option data-countryCode="AE" value="971"> +971&nbsp;&nbsp;&nbsp;United Arab Emirates</option>
+                          <option data-countryCode="UY" value="598"> +598&nbsp;&nbsp;&nbsp;Uruguay</option>
+                          <option data-countryCode="UZ" value="7"> +7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Uzbekistan</option>
+                          <option data-countryCode="VN" value="84"> +84&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Vietnam</option>
+                          <option data-countryCode="ZW" value="263"> +263&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Zimbabwe</option>
+                        </select> -->
+                        <input id="phone" type="tel" inputmode="numeric" class="form-control"
+                          oninput="workorderErrorLess()" aria-label="Sizing example input"
+                          aria-describedby="inputGroup-sizing-sm" placeholder="Enter Valid Number"
+                          onkeypress="return /[0-9]/i.test(event.key)">
+                      </div>
+                      <span id="msgSenderPhone" class="msgSpan"></span>
+                      <span id="" class="msgSpan"></span>
+
+                      <div class="input-group input-group-sm address">
+                        <span class="input-group-text" id="inputGroup-sizing-sm address"
+                          style="background-color:#DEF5E5;">Address</span>
+                        <input id="address" type="text" class="form-control" aria-label="Sizing example input"
+                          aria-describedby="inputGroup-sizing-sm">
+                      </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-12 col-sm-12 container right_one">
+                      <h1 class="workorder_e" style="color: #069A8E; margin-bottom: 0px; padding-top: 5px;">WORKORDER TO
+                      </h1>
+                      <div class="input-group wocomname title right">
+                        <input id="rCompanyName" type="text" class="form-control" oninput="workorderErrorLess()"
+                          aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg"
+                          placeholder="Receiver's Company Name" style="text-align: left;"
+                          onkeypress="return /[a-zA-Z0-9. ]/i.test(event.key)">
+                      </div>
+                      <span id="msgReceiverCompanyName" class="msgSpan"> </span>
+
+                      <div class="input-group input-group-sm mb-3 middle-box email right">
+                        <span class="input-group-text" id="inputGroup-sizing-sm"
+                          style="background-color:#DEF5E5;">Name<span class="required">*</span></span>
+                        <input id="rName" type="text" class="form-control" oninput="workorderErrorLess()"
+                          aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"
+                          placeholder="Receiver's Name Here" onkeypress="return /[a-zA-Z0-9. ]/i.test(event.key)">
+                      </div>
+                      <span id="msgReceiverContactName" class="msgSpan"> </span>
+
+                      <div class="input-group input-group-sm mb-3 middle-box email right">
+                        <span class="input-group-text" id="inputGroup-sizing-sm"
+                          style="background-color:#DEF5E5;">Email<span class="required">*</span></span>
+                        <input id="rEmail" type="text" class="form-control" oninput="workorderErrorLess()"
+                          aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"
+                          placeholder="customer@example.com" onkeypress="return /[a-zA-Z0-9@._. ]/i.test(event.key)">
+                      </div>
+                      <span id="msgReceiverMail" class="msgSpan"> </span>
+
+                      <div class="input-group input-group-sm mb-3 middle-box phone right ">
+                        <span class="input-group-text" id="inputGroup-sizing-sm"
+                          style="background-color:#DEF5E5;">Phone<span class="required"></span></span>
+
+                        <select name="countryCode" id="areaCodeR" class="form-control"
+                          style="max-width:35px;padding:0px;margin:0px;height:40px;text-align: left;font-size: smaller; border-radius: 0;"
+                          onchange="Selectr()">
+                          <option data-countryCode="IN" value="91"><span>+91 &nbsp;&nbsp;&nbsp; IND </span></option>
+                          <option data-countryCode="US" value="1">+1 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;USA</option>
+                          <!--<option data-countryCode="US" value="44">+44 &nbsp;&nbsp;&nbsp;&nbsp; UK</option>
+                          <option data-countryCode="DZ" value="213">+213 &nbsp;&nbsp;&nbsp;Algeria</option>
+                          <option data-countryCode="AR" value="54">+54&nbsp;&nbsp;&nbsp;&nbsp;Argentina</option>
+                          <option data-countryCode="AU" value="61">+61 &nbsp;&nbsp;&nbsp;&nbsp; Australia</option>
+                          <option data-countryCode="AT" value="43">+43&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Austria</option>
+                          <option data-countryCode="BD" value="880">+880&nbsp;&nbsp;&nbsp;Bangladesh</option>
+                          <option data-countryCode="CA" value="1">+1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Canada</option>
+                          <option data-countryCode="CF" value="236">+236&nbsp;&nbsp;&nbsp;Central African Republic
+                          </option>
+                          <option data-countryCode="CN" value="86">+86&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;China</option>
+                          <option data-countryCode="DE" value="49">+49&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Germany</option>
+                          <option data-countryCode="HK" value="852">+852&nbsp;&nbsp;&nbsp;Hong Kong</option>
+                          <option data-countryCode="IS" value="354">+354&nbsp;&nbsp;&nbsp;Iceland</option>
+                          <option data-countryCode="ID" value="62">+62&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Indonesia</option>
+                          <option data-countryCode="IR" value="98">+98&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Iran</option>
+                          <option data-countryCode="IQ" value="964">+964&nbsp;&nbsp;&nbsp;Iraq</option>
+                          <option data-countryCode="IE" value="353">+353&nbsp;&nbsp;&nbsp;Ireland</option>
+                          <option data-countryCode="IL" value="972">+972&nbsp;&nbsp;&nbsp;Israel</option>
+                          <option data-countryCode="IT" value="39">+39&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Italy</option>
+                          <option data-countryCode="JM" value="1876"> +1876&nbsp;&nbsp;&nbsp; Jamaica</option>
+                          <option data-countryCode="NP" value="977"> +977&nbsp;&nbsp;&nbsp;Nepal</option>
+                          <option data-countryCode="NL" value="31"> +31&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Netherlands
+                          </option>
+                          <option data-countryCode="NZ" value="64"> +64&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;New Zealand
+                          </option>
+                          <option data-countryCode="QA" value="974"> +974&nbsp;&nbsp;&nbsp;Qatar</option>
+                          <option data-countryCode="RU" value="7"> +7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Russia</option>
+                          <option data-countryCode="SA" value="966"> +966&nbsp;&nbsp;&nbsp;Saudi Arabia</option>
+                          <option data-countryCode="SG" value="65"> +65&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Singapore</option>
+                          <option data-countryCode="ES" value="34"> +34&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Spain</option>
+                          <option data-countryCode="LK" value="94"> +94&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sri Lanka</option>
+                          <option data-countryCode="SZ" value="268"> +268&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Swaziland
+                          </option>
+                          <option data-countryCode="SE" value="46"> +46&nbsp;&nbsp;&nbsp;&nbsp;Sweden</option>
+                          <option data-countryCode="UA" value="380"> +380&nbsp;&nbsp;&nbsp;Ukraine</option>
+                          <option data-countryCode="AE" value="971"> +971&nbsp;&nbsp;&nbsp;United Arab Emirates</option>
+                          <option data-countryCode="UY" value="598"> +598&nbsp;&nbsp;&nbsp;Uruguay</option>
+                          <option data-countryCode="UZ" value="7"> +7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Uzbekistan</option>
+                          <option data-countryCode="VN" value="84"> +84&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Vietnam</option>
+                          <option data-countryCode="ZW" value="263"> +263&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Zimbabwe</option>
+                        </select> -->
+                        <input id="rPhone" type="tel" inputmode="numeric" class="form-control"
+                          oninput="workorderErrorLess()" aria-label="Sizing example input"
+                          aria-describedby="inputGroup-sizing-sm" placeholder="Enter Valid Number"
+                          onkeypress="return /[0-9]/i.test(event.key)">
+                      </div>
+                      <span id="msgReceiverPhone" class="msgSpan"> </span>
+                      <span id="" class="msgSpan"> </span>
+
+                      <div class="input-group input-group-sm address right">
+                        <span class="input-group-text" id="inputGroup-sizing-sm address"
+                          style="background-color:#DEF5E5;">Address</span>
+                        <input id="rAddress" type="text" class="form-control" aria-label="Sizing example input"
+                          aria-describedby="inputGroup-sizing-sm">
+                      </div>
+                      <p class="error" id="error"></p>
+                      <div><strong style="color: red;" id="error_filed"></strong></div>
+                    </div>
+                  </div>
+                  <div class="input-group-currency mb-3 blockCurrency" style=" background-color:#DEF5E5">
+                    <span class="mb-2" id="currency">CURRENCY</span>
+                    <select class="form-select" id="currencySelect" onchange="currency()">
+                      <option value="USD" selected="selected" label="USD ($)">USD ($)</option>
+                      <option value="IND" selected="selected" label="IND (₹)">IND (₹)
+                    </select>
+                  </div>
+
+                  <div class="table_"
+                    style="margin-bottom: 10px;background-color: #069A8E;color: white; text-align: center; border-radius: 5px;">
+                    <div class="thead" style="padding-top: 7px;">
+
+                      <div class="description_div"><span>Item Name</span></div>
+                      <div class="calculation_div">
+                        <div style="width:30%; "><span>Quantity</span></div>
+                        <div style="width: 30%; "><span id="unitChange">Unit Price (₹)</span></div>
+                        <div style="width: 32%;"><span id="amountChange">Amount (₹)</span></div>
+                        <div style="width: 8%;"><span scope="col"></span></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div id="tbl">
+                    <!-- <div id="row1" class="table-row" style="margin-bottom: 10px;">
+
+                      <div class="description_div"><input id="description1" type="Description" name="Description"
+                          class="form-control input" oninput="workorderErrorLess()" placeholder="Item Name"
+                          style=" text-align: left;"></div>
+                      <div class="calculation_div">
+                        <div style="width: 30%; padding:0px 2px 0px 2px;"><input id="quantity1" type="number"
+                            name="number" class="form-control input" min="1" placeholder="Quantity"
+                            style=" text-align: left;" oninput="addNRows(1), workorderErrorLess()"
+                            onkeypress="return /[0-9]/i.test(event.key)"></div>
+                        <div style="width: 30%; padding:0px 2px 0px 2px;"><input id="amount1" type="number"
+                            name="Amount" class="form-control" min="1" placeholder="Price" style=" text-align: left;"
+                            oninput="addNRows(1), workorderErrorLess()" onkeypress="return /[0-9.]/i.test(event.key)">
+                        </div>
+                        <div style="width: 32%; padding:0px 2px 0px 2px;"><input id="txtResult1" type="text"
+                            class="form-control" style=" text-align: left;" name="TextBox3"
+                            onkeypress="return /[]/i.test(event.key)" disabled></div>
+
+                      </div>
+                    </div> -->
+
+                  </div>
+                  <!-- <input type="button" style="margin-top: 10px;background-color: #069A8E; "
+                    class="button add_another btn btn-primary" value="+ Add line" onclick="validate()" /> -->
+
+                  <span class="msgSpan" id="inv_item"></span>
+
+                  <div class="flex">
+                    <div class="note">
+                      <div class="div" style="margin-bottom: 20px;">
+                        <h5 class="comment">Notes</h5>
+                        <textarea id="notes" name="name" rows="2" cols="60" style="width: 500px; height: 90px;"
+                          maxlength="500"></textarea>
+                      </div>
+                      <div class="div">
+                        <h5 class="comment" style="width: 220px;">Terms and Conditions:</h5>
+                        <textarea id="terms" name="name" rows="4" cols="60" style="width: 500px; height: 100px;"
+                          maxlength="500"></textarea>
+                      </div>
+                    </div>
+                    <div class="calculation" style="margin-top: 5px; margin-bottom: 5px">
+                      <div class="sub input-group end mb-3" style="width: 100%">
+                        <input class="input-group-text wosub" style="background-color:#DEF5E5;" id="com_date"
+                          value="Sub Total (₹)" disabled />
+                        <input id="subTotal" style="background-color: white;" type="number"
+                          class="form-control inputGroup wosub" aria-label="Sizing example input"
+                          aria-describedby="inputGroup-sizing-sm" disabled>
+                      </div>
+                      <div class="word input-group end mb-3" style="width: 100%">
+                        <input class="input-group-text wosub" style="background-color:#DEF5E5;" id="com_word"
+                          value="In Words (₹)" disabled />
+                        <textarea id="subTotalWord" style="background-color: white;" type="number"
+                          class="form-control inputGroup wosub" aria-label="Sizing example input"
+                          aria-describedby="inputGroup-sizing-sm" rows="3" disabled></textarea>
+                      </div>
+                    </div>
+                  </div>
+                  <input type="hidden" id="ipaddress"></input>
+
+                  <!-- START: Here's the IP stuff -->
+                  <script type="application/javascript">
+                    function getIP(json) {
+                      document.getElementById("ipaddress").value = json.ip;
+                    }
+                  </script>
+                  <script type="application/javascript"
+                    src="https://api.ipify.org?format=jsonp&callback=getIP"></script>
+                  <!-- END: IP Stuff -->
+                  <p id="Signature"></p>
+              </div>
+
+
+
+            </div>
+            </main>
+
+
+
+          </div>
+          <!--DO NOT DELETE THIS div. IT is responsible for showing footer always at the bottom-->
+          <div></div>
+        </div>
+      </div>
+  </div>
+  </section>
+  <div class="container">
+    <div class="center">
+      <button class="btn btn-info" type="submit" onclick="workOrderValidate()" id="previewbtn"
+        style="color: #fff; margin: 12px; background-color: #069A8E;">Preview</button>
+    </div>
+  </div>
+  <div class="previewCss">
+    <div id="previewP" style="display: none;"></div>
+  </div>
+  <div class="preview1" style="display: flex; justify-content: center;">
+    <input type="button" id="back" class="btn" value="EDIT"
+      style="margin: 5px;background-color: #8EC3B0; display: none;" onclick="togg();" />
+
+    <button class="btn" type="submit" id="submitbutton"
+      style="margin: 5px;background-color: #069A8E; color: #fff; display: none;  "><i class="submit"></i>Submit</button>
+      <input type="button" id="workorderdraft" class="btn" value="Update Draft"
+      style="margin: 5px;background-color: #b0c4de; display: none;" onclick="updateDraftValues()"/>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer-invoice" id="footer"></div>
+  <script src="scripts/common.js"></script>
+
+  <script>
+    $(document).ready(function () {
+      $("#submitbutton").click(function (e) {
+        e.preventDefault();
+          updateDraftToSave();
+      });
+    });
+    function togg() {
+      let inv = document.getElementById("workorder-txt");
+      let bt_i = document.getElementById("previewbtn");
+
+      let subt = document.getElementById("submitbutton");
+      let workorder_draft = document.getElementById("workorderdraft");
+      let prw = document.getElementById("previewP");
+      let bt_p = document.getElementById("back");
+      if (inv.style.display != 'none') {
+        inv.style.display = 'none'
+        bt_i.style.display = 'none'
+        subt.style.display = 'inline'
+        workorder_draft.style.display = 'inline'
+        prw.style.display = 'block'
+        bt_p.style.display = 'block'
+        bt_p.style.display = 'block'
+      }
+      else {
+        inv.style.display = 'block'
+        bt_i.style.display = 'block'
+        subt.style.display = 'none'
+        workorder_draft.style.display = 'none'
+        prw.style.display = 'none'
+        bt_p.style.display = 'none'
+      }
+    }
+
+    function woUniqueId() {
+      var today = new Date();
+      document.getElementById("wo_unique_id").value = "WO" + today.getDate() + String(today.getMonth() + 1) + (today).getMilliseconds() + Math.floor(Math.random() * 100);
+    }
+
+    let inputs = document.querySelectorAll(".input");
+    let button = document.querySelector(".button");
+    button.disabled = true; 
+
+    for (let i = 0; i < inputs.length; i++) {
+      inputs[i].addEventListener("input", stateHandle); 
+    }
+
+    function stateHandle() {
+
+      let isFilled = true; // initialize flag to true
+      for (let i = 0; i < inputs.length; i++) {
+        if (inputs[i].value === "") {
+          isFilled = false; // set flag to false if any input field is empty
+          break;
+        }
+      }
+      button.disabled = !isFilled; // enable/disable button based on flag
+    }
+
+    var today = new Date().toISOString().split("T")[0];
+    document.getElementById("workorderDate").setAttribute("max", today);
+    document.getElementById("workorderDate").value = today;
+
+    function workorderErrorLess() {
+      var inputDate = new Date(document.getElementById("workorderDate").value);
+      var today = new Date();
+
+      if (inputDate > today) {
+        document.getElementById("workorderDate").value = today.toISOString().split("T")[0];
+      }
+    }
+  </script>
+  <script>
+    document.getElementById('log-out').addEventListener('click', function (e) {
+      e.preventDefault();
+      localStorage.removeItem('token');
+      window.location.href = '/login.html';
+    });
+
+  </script>
+</body>
+
+<div id="infoModal" class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title">Information</h5>
+          </div>
+          <div class="modal-body" style="padding: 1rem;">
+              <p style="margin: 0;">
+                  1. WorkOrder Id must start with WO<br>
+                  2. Company Name and User Name must start with capital letter<br>
+                  eg: Abhjugy,TECHP,EJEH23,etc<br>
+                  3. Enter Terms and conditions for the company<br>
+                  eg: No return of products are applicable or company is not responsible for any damage after purchase<br>
+                  4. Item field must contain at least one item<br>
+                  5. Enter correct Email Id
+              </p>
+          </div>
+          <div class="modal-footer">
+              <span onclick="closeModal()" style="cursor: pointer; font-size: 12px; padding: 4px; background-color: #069A8E; color: #fff;">
+                  Close
+              </span>
+          </div>
+      </div>
+  </div>
+</div>
+
+<script>
+  document.getElementById("myinfo").addEventListener("click", function() {
+        var modal = document.getElementById("infoModal");
+        modal.style.display = "block";
+    });
+
+    var closeButton = document.querySelector("#infoModal .close");
+    closeButton.addEventListener("click", function() {
+        var modal = document.getElementById("infoModal");
+        modal.style.display = "none";
+    });
+
+    window.addEventListener("click", function(event) {
+        var modal = document.getElementById("infoModal");
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    });
+
+    function closeModal() {
+        var modal = document.getElementById("infoModal");
+        modal.style.display = "none";
+    }
+</script>
+
+</html>

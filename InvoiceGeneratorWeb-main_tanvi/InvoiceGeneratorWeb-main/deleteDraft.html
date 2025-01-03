@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>delete</title>
+  <link rel="icon" href="/images/logo_transparent.png" type="image/icon type">
+  <link rel="stylesheet" href="css/footer.css">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/success.css">
+  <script src="scripts/url.js"></script>
+  <script src="scripts/index.js"></script>
+</head>
+
+<body>
+  <div class=content>
+    <div class="wrapper-1">
+      <div class="wrapper-2">
+        <h1>Delete Draft ?</h1>
+        <p>This Step Cannot be Undone</p>
+        <button class="go-home" id="delete" >
+          Delete Draft
+        </button>
+        <button class="go-home" onclick="location.href = 'invoiceDraftRecord.html';" id="alertMO">
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+<!-- Footer -->
+<div class="footer-invoice" id="footer" style=" position: fixed; bottom: 0;"></div>
+<script src="scripts/common.js"></script>
+
+<script>
+document.getElementById("delete").addEventListener("click",(e)=> {
+  deleteDraft();
+});
+</script>
+</body>
+
+</html>

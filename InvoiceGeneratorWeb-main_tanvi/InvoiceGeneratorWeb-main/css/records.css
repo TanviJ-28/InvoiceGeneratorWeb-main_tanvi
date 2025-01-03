@@ -1,0 +1,259 @@
+
+/* @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap'); */
+
+/* * {
+  font-family: 'Poppins', sans-serif;
+} */
+
+#id {
+  padding: 0;
+  margin: 0;
+}
+
+.nav-hov:hover {
+  border-bottom: solid  2px #0b5b80 ;
+  font-weight: 700;
+}
+
+.nav-item {
+  margin-top: 19px;
+  margin-bottom: 10px;
+}
+
+.navbar-css {
+  background-color: #ffffff;
+  padding-left: 12px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  height: 70px;
+  --bs-font-sans-serif: system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue","Noto Sans","Liberation Sans",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  font-size: 110%;
+  font-family: 'Times New Roman';
+  font-weight:600;
+  
+}
+.collapse a{
+  transition: all .40s ease;
+}
+
+.btn2 {
+  color: #fff;
+  background: #5892FF;
+  border: none;
+  margin: 30px 0;
+  border-radius: 10px;
+  font-weight: 700;
+  text-transform: capitalize;
+  position: relative;
+
+
+}
+
+.icon1 {
+
+  color: #11698E;
+  font-weight: bold;
+  border-color: #dddddd;
+
+}
+
+.content-table {
+  border-collapse: collapse;
+  padding: 10px;
+  width: 97%;
+  margin: 20px;
+  margin-top: 0px;
+  font-size: 0.9em;
+  border-radius: 5px 5px 0 0;
+  /* overflow: hidden; */
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
+}
+.invoice-table {
+  border-collapse: collapse;
+  padding: 10px;
+  width: 97%;
+  margin: 20px;
+  margin-top: 0px;
+  font-size: 0.9em;
+  border-radius: 5px 5px 0 0;
+  /* overflow: hidden; */
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
+}
+
+.content-table thead tr {
+  background-color: #069A8E;
+  color: #ffffff;
+  text-align: left;
+  font-weight: bold;
+}
+.invoice-table thead tr {
+  background-color: #1746A2;
+  color: #ffffff;
+  text-align: left;
+  font-weight: bold;
+}
+
+.content-table th,
+.content-table td {
+  padding: 12px 15px;
+  text-align: left;
+}
+.invoice-table th,
+.invoice-table td {
+  padding: 12px 15px;
+  text-align: left;
+}
+
+.content-table tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+.invoice-table tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+
+.content-table tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+.invoice-table tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+.content-table tbody tr:last-of-type {
+  border-bottom: 2px solid rgb(143, 245, 182);
+}
+.invoice-table tbody tr:last-of-type {
+  border-bottom: 2px solid rgb(74, 153, 228);
+}
+
+.content-table tbody tr:hover {
+  border-bottom: 1px solid rgb(143, 245, 182);
+  background: rgb(220, 220, 220);
+}
+.invoice-table tbody tr:hover {
+  border-bottom: 1px solid rgb(74, 153, 228);
+  background: rgb(220, 220, 220);
+}
+
+.th {
+  cursor: pointer;
+}
+tbody{
+  overflow-y: auto;
+}
+
+.icon {
+  width: 80px;
+  margin-top: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.row {
+  display: flex;
+}
+
+.column {
+  flex: 50%;
+}
+
+.search {
+  width: 50%;
+}
+
+.footer-content {
+  font-size: 18px;
+  text-decoration: none;
+  font-family: Sitka Heading;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+  padding-top: 16px;
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 68px;
+  background-color: #949b9d;
+}
+#sc{
+  margin-top: 13px;
+  color: #069A8E;
+  margin-left: 40%;
+}
+#invoice-heading{
+  margin-top: 13px;
+  color: #1746A2;;
+  margin-left: 40%;
+}
+#myInput{
+  border-radius: 5px;
+  border: 1px solid rgb(44, 43, 43);
+  height: 33px;
+  margin-bottom: 28px;
+}
+
+@media screen and (max-width: 1000px) {
+  
+
+  .footer {
+    width: 100% !important;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  
+
+  .footer {
+    width: 100% !important;
+  }
+}
+@media screen and (max-width: 1000px) {
+  
+  .navbar-nav {
+    flex-direction: column;
+    align-items: left;
+  }
+}
+@media screen and (max-width: 1200px) {
+  
+  .navbar-nav {
+    flex-direction: column;
+    align-items: left;
+  }
+
+  .nav-item {
+    margin-top: 4px;
+    margin-bottom: 4px;
+  }
+
+  .navbar-css {
+    height: auto;
+    padding-bottom: 10px;
+  }
+
+  .nav-hov {
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+  .table-res{
+    overflow-x: auto;
+    margin-left: 10px;
+    overflow-y: visible;
+  }
+  #myTable{
+    margin: 0px;
+    margin-right: 10px !important;
+  }
+  #sc{
+    text-align: center !important;
+    margin-left: 20px;
+  }
+  #myInput{
+    width: 88% !important;
+  }
+  
+  .toggler{
+    right: 0;
+  }
+}

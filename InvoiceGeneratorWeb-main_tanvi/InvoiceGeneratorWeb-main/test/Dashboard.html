@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>Dashboard</title>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css"></style>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+    integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+
+    * {
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(99deg, rgb(123, 145, 206) 6%, rgb(84, 214, 197) 70%);
+    }
+
+    .nav-hov:hover {
+      color: #11698E;
+      font-weight: 500;
+    }
+
+    .navbar-css {
+      background: #fafcfb;
+      /* background-color: #f8fafc; */
+      padding-left: 12px;
+    }
+
+    .btn {
+      border: none;
+      padding: 9px;
+      border-radius: 6px;
+      background-color: #288fab;
+      color: white;
+    }
+
+    .form-control {
+      background: #ecf0f3;
+      padding: 13px;
+      padding-left: 20px;
+      height: 31px;
+      font-size: 16px;
+      border-radius: 6px;
+      margin-top: 10px;
+      width: 100%;
+    }
+
+    .form-control:focus {
+      background: #ecf0f3;
+      padding: 13px;
+      padding-left: 20px;
+      height: 31px;
+      font-size: 16px;
+      border-radius: 6px;
+      margin-top: 10px;
+      width: 100%;
+    }
+
+    .heading {
+      font-weight: 700;
+      color: rgb(11, 51, 51);
+      font-size: 40px;
+      font-family: 'Sitka Heading';
+      margin-bottom: 0;
+    }
+
+    a {
+      font-size: 14px;
+      text-decoration: none;
+      color: rgb(46, 43, 219);
+      border-radius: 10px;
+      font-weight: 400;
+      margin-top: 15px !important;
+    }
+
+    .thumbnail {
+      width: 124px;
+      height: 124px;
+      display: flex;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 1.5em;
+      border-radius: 100%;
+    }
+
+    .user {
+      margin: 0px;
+      font-size: large;
+      text-align: left;
+      padding-left: 20px;
+      margin-top: 5px;
+      font-weight: bold;
+
+    }
+
+    .user-details {
+      margin-left: 0px;
+      font-size: large;
+      text-align: right;
+      padding-left: 20px;
+      margin-top: 5px;
+      font-weight: bold;
+      color: #3d70df;
+
+    }
+
+    .span-info {
+      font-weight: 700;
+    }
+
+    .footer-content {
+      font-size: 15px;
+      text-decoration: none;
+      font-weight: bold;
+      color: #288fab;
+      text-decoration: none;
+    }
+
+    .footer-content:hover {
+      font-size: 15px;
+      text-decoration: none;
+      font-weight: bold;
+      color: #288fab;
+      text-decoration: none;
+    }
+
+    .footer {
+      /* position: fixed; */
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      background-color: white;
+    }
+
+    .nav-tabs {
+      margin-top: 20px;
+    }
+
+    .nav-tabs a {
+      font-weight: 700;
+      color: rgb(0, 0, 0);
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .nav-tabs a:hover {
+      font-weight: 700;
+      background-color: rgb(153, 20, 20);
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .nav-tabs>li.active>a,
+    .nav-tabs>li.active>a:focus,
+    .nav-tabs>li.active>a:hover {
+      border: none;
+      color: #3d70df;
+      /* background-color: rgb(149, 178, 216); */
+    }
+
+    .nav-link:hover {
+      background-color: white !important;
+      border: none;
+      background: none;
+    }
+
+
+    .heading_user {
+      font-family: Sitka heading;
+      /* color: #1373b3; */
+      font-weight: 900;
+      /* font-size: 40px; */
+      /* margin-left: -380px; */
+      text-align: left;
+    }
+
+    .form-group-select {
+      text-align: left;
+      border-radius: 0;
+    }
+
+    .icon {
+      margin: 10px;
+      color: #404144;
+    }
+
+    .error {
+      color: red;
+      font-size: 14px;
+      text-align: left;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navigation navbar-expand-lg navbar-light navbar-css">
+    <img src="/images/Invoices4Us-logos_dark.png" alt="Home" style="width: 130px; height: 66px;">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-item nav-hov active" href="invoice.html">Generate Invoice</a>&nbsp;&nbsp;
+        <a class="nav-item nav-hov " href="workorder.html">Generate Work Order</a>
+      </div>
+    </div>
+  </nav>
+  <!-- Navbar end -->
+  <div class="container mt-2 p-5 pb-5 mb-5 text-center" style="background-color: white;">
+    <div class="row pb-5 p-5 pt-5" style="height: 500px;">
+      <h1 class="heading_user">Aman Saxena</h1>
+      <h2 class="heading_user" style="color:#3d70df;">Infinity Ventures</h4>
+        <div class="col-lg-7 text-center">
+
+          <form method="post">
+            <div class="mt-3 mb-5 text-center">
+              <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="active">
+                  <a class="nav-link" id="user-tab" data-toggle="pill" href="#user" role="tab" aria-controls="user"
+                    aria-selected="true">Overview</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="profile-tab" data-toggle="pill" href="#profile" role="tab"
+                    aria-controls="profile" aria-selected="true">Edit Profile</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="password-tab" data-toggle="pill" href="#password" role="tab"
+                    aria-controls="password" aria-selected="true">Change
+                    Password</a>
+                </li>
+              </ul>
+            </div>
+            <div class="tab-content user-tab" id="myTabContent" style="margin-right: 39px;
+                    margin-top: 46px;">
+              <div class="tab-pane fade in active" id="user" role="tabpanel" aria-labelledby="user-tab"
+                style="margin-left: 20px ; margin-right: 50px;">
+                <div class="col-lg-12 mt-3 mb-5" style="width: 125%;">
+                  <div class="col-lg-3 profile">
+                    <p>Name</p>
+                  </div>
+                  <div class="col-lg-9 user-details ">
+                    <p>Aman Saxena</p>
+                  </div>
+                  <div class="col-lg-3 profile">
+                    <p>Company</p>
+                  </div>
+                  <div class="col-lg-9 user-details">
+                    <p>Infinity Ventures</p>
+                  </div>
+                  <div class="col-lg-3 profile">
+                    <p>Email</p>
+                  </div>
+                  <div class="col-lg-9 user-details">
+                    <p>from@example.com</p>
+                  </div>
+                  <div class="col-lg-3 profile">
+                    <p>Phone</p>
+                  </div>
+                  <div class="col-lg-9 user-details">
+                    <p>918077066487</p>
+                  </div>
+                  <div class="col-lg-3 profile">
+                    <p>Address</p>
+                  </div>
+                  <div class="col-lg-9 user-details">
+                    <p>Mathura</p>
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab"
+                style="margin-left: 20px ; margin-right: 50px;">
+
+                <div class="form-group pass_show">
+                  <input type="text" placeholder="Your name" class="form-control" id="uname"
+                    onblur="FirstLetterCapital()">
+                </div>
+                <div class="form-group pass_show">
+                  <input type="text" placeholder="Your Company name" class="form-control" id="cname"
+                    onblur="FirstLetterCapital()">
+                </div>
+                <div class="form-group pass_show">
+                  <input type="Email" placeholder="from@example.com" class="form-control" id="email">
+                </div>
+                <div class="form-group pass_show">
+                  <input type="text" placeholder="Address" class="form-control" id="address">
+                  <div id="address-error" class="error"></div>
+                </div>
+
+                <div class="form-group pass_show">
+                  <input class="form-control" type="text" id="phone" name="phone"
+                    placeholder="Phone number with country code" value="+91 " required>
+                  
+                  <!-- <span class="input-group-text" id="inputGroup-sizing-sm">Phone<span class="required">*</span></span> -->
+
+                  <!-- <select name="countryCode" id="areaCode" class="form-group-select form-control"
+                    style="margin:0px;max-width:41px;padding:0px;padding-right:3px;position:absolute;height: 31px;border-right: none; border-radius: 8px;"
+                    onchange="Select()">
+                    
+                    <option data-countryCode="IN" value="91"><span>+91 &nbsp;&nbsp;&nbsp;India</span></option>
+                    <option data-countryCode="US" value="1">+1 &nbsp;&nbsp;&nbsp;&nbsp;USA</option>
+                    <option data-countryCode="US" value="44">+44 &nbsp;&nbsp;&nbsp; UK</option>
+                    <option data-countryCode="DZ" value="213">+213 &nbsp;&nbsp;&nbsp;Algeria</option>
+                    <option data-countryCode="AR" value="54">+54&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Argentina</option>
+                    <option data-countryCode="AU" value="61">+61 &nbsp;&nbsp;&nbsp; Australia</option>
+                    <option data-countryCode="AT" value="43">+43&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Austria</option>
+                    <option data-countryCode="BD" value="880">+880&nbsp;&nbsp;&nbsp;Bangladesh</option>
+                    <option data-countryCode="CA" value="1">+1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Canada</option>
+                    <option data-countryCode="CF" value="236">+236&nbsp;&nbsp;&nbsp;Central African Republic</option>
+                    <option data-countryCode="CN" value="86">+86&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;China</option>
+                    <option data-countryCode="DE" value="49">+49&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Germany</option>
+                    <option data-countryCode="HK" value="852">+852&nbsp;&nbsp;&nbsp;Hong Kong</option>
+                    <option data-countryCode="IS" value="354">+354&nbsp;&nbsp;&nbsp;Iceland</option>
+                    <option data-countryCode="ID" value="62">+62&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Indonesia</option>
+                    <option data-countryCode="IR" value="98">+98&nbsp;&nbsp;&nbsp;Iran</option>
+                    <option data-countryCode="IQ" value="964">+964&nbsp;&nbsp;&nbsp;Iraq</option>
+                    <option data-countryCode="IE" value="353">+353&nbsp;&nbsp;&nbsp;Ireland</option>
+                    <option data-countryCode="IL" value="972">+972&nbsp;&nbsp;&nbsp;Israel</option>
+                    <option data-countryCode="IT" value="39">+39&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Italy</option>
+                    <option data-countryCode="JM" value="1876"> +1876&nbsp;&nbsp;&nbsp; Jamaica</option>
+                    <option data-countryCode="NP" value="977"> +977&nbsp;&nbsp;&nbsp;Nepal</option>
+                    <option data-countryCode="NL" value="31"> +31&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Netherlands</option>
+                    <option data-countryCode="NZ" value="64"> +64&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;New Zealand</option>
+                    <option data-countryCode="QA" value="974"> +974&nbsp;&nbsp;&nbsp;Qatar</option>
+                    <option data-countryCode="RU" value="7"> +7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Russia</option>
+                    <option data-countryCode="SA" value="966"> +966&nbsp;&nbsp;&nbsp;Saudi Arabia</option>
+                    <option data-countryCode="SG" value="65"> +65&nbsp;&nbsp;&nbsp;Singapore</option>
+                    <option data-countryCode="ES" value="34"> +34&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Spain</option>
+                    <option data-countryCode="LK" value="94"> +94&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sri Lanka</option>
+                    <option data-countryCode="SZ" value="268"> +268&nbsp;&nbsp;&nbsp;Swaziland</option>
+                    <option data-countryCode="SE" value="46"> +46&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sweden</option>
+                    <option data-countryCode="UA" value="380"> +380&nbsp;&nbsp;&nbsp;Ukraine</option>
+                    <option data-countryCode="AE" value="971"> +971&nbsp;&nbsp;&nbsp;United Arab Emirates</option>
+                    <option data-countryCode="UY" value="598"> +598&nbsp;&nbsp;&nbsp;Uruguay</option>
+                    <option data-countryCode="UZ" value="7"> +7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Uzbekistan</option>
+                    <option data-countryCode="VN" value="84"> +84&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Vietnam</option>
+                    <option data-countryCode="ZW" value="263"> +263&nbsp;&nbsp;&nbsp;Zimbabwe</option>
+                    <input id="phone" inputmode="numeric" class="form-group pass_show form-control"
+                      style="margin-left: 40px; margin-top:0px; width: 92%;position: relative;border-left: none;padding-left: 0px;border-left: none;"
+                      oninput="error_less()" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"
+                      placeholder="1234567890"><div id="phone-error" class="error"></div>
+                  </select> -->
+                </div>
+                <div id="phone-error" class="error"></div>
+                <div class="text-center">
+                  <button class="btn" type="submit" style="margin-top: 2px;">Update</button>
+                </div>
+              </div>
+
+              <div class="tab-pane fade" id="password" role="tabpanel" aria-labelledby="password-tab"
+                style="margin-left: 20px ; margin-right: 50px;">
+
+                <div class="form-group pass_show mt-5">
+                  <input type="password" placeholder="Current password" class="form-control"
+                    placeholder="Current Password">
+                </div>
+                <div class="form-group pass_show">
+                  <input type="password" placeholder="New password" class="form-control" placeholder="New Password">
+                </div>
+                <div class="form-group pass_show">
+                  <input type="password" placeholder="Confirm password" class="form-control"
+                    placeholder="Confirm Password">
+                </div>
+                <div class="text-center"> <button class="btn">Update</button></div>
+              </div>
+            </div>
+        </div>
+        </form>
+        <div class="col-lg-5 mt-0 pt-0">
+          <img src="/images/user-icon-jpg-2.jpg" style="height:400px; width:110%; margin-top: -15px;">
+        </div>
+    </div>
+    <!-- End container -->
+  </div>
+  <!-- Footer Start -->
+  <div>
+    <footer class="footer mt-5">
+      <div class="container-fluid text-center mt-1 pb-2 pt-2">
+        <div class="row">
+          <span class="footer-content">Invoice generated by invoices4us.com</span>
+        </div>
+      </div>
+    </footer>
+  </div>
+  <!-- Footer finish -->
+
+  <script>
+    function FirstLetterCapital() {
+      let uname = document.getElementById("uname");
+      let cname = document.getElementById("cname");
+      uname.value = uname.value.charAt(0).toUpperCase() + uname.value.slice(1);
+      cname.value = cname.value.charAt(0).toUpperCase() + cname.value.slice(1);
+    }
+
+    var emailInput = document.getElementById("email");
+    emailInput.addEventListener("input", function () {
+      if (!validateEmail(this.value)) {
+        this.setCustomValidity("Invalid email address");
+      } else {
+        this.setCustomValidity("");
+      }
+    });
+
+    function validateEmail(email) {
+      var emailRegex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
+      return emailRegex.test(email);
+    }
+
+    const addressField = document.getElementById('address');
+    const addressError = document.getElementById('address-error');
+
+    addressField.addEventListener('input', validateaddress);
+
+    function validateaddress() {
+      const addressRegex = /[!@#$%^&*_+\=\[\]{};':"\\|.<>?]/;
+
+      if (addressRegex.test(addressField.value)) {
+        addressError.textContent = 'Please Enter Valid address';
+      } else {
+        addressError.textContent = '';
+      }
+    }
+
+    const phoneInput = document.getElementById('phone');
+    const phoneError = document.getElementById('phone-error');
+
+    phoneInput.addEventListener('blur', () => {
+      const phoneRegex = /^\+(?:[0-9] ?){8,14}[0-9]$/;
+      const phoneNumber = phoneInput.value;
+
+      if (!phoneRegex.test(phoneNumber)) {
+        phoneError.textContent = 'Please enter valid phone number';
+        phoneInput.classList.add('error');
+      } else {
+        phoneError.textContent = '';
+        phoneInput.classList.remove('error');
+      }
+      // Extract the country code from the phone number
+      var countryCodeRegex = /^\+([0-9]{1,3})/;
+      var matches = phoneNumber.match(countryCodeRegex);
+      if (!matches || matches.length < 2) {
+        return false;
+      }
+
+      // Check if the country code is valid
+      var countryCode = matches[1];
+      var validCountryCodes = ['1', '44', '91', '61']; // Add more valid country codes here
+      return validCountryCodes.includes(countryCode);
+    });
+  </script>
+</body>
+</html>

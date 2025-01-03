@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/boxicons.min.css">
+  <script src="scripts/url.js"></script>
+  <script src="js/jquery-3.6.1.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="scripts/index.js"></script>
+  <link rel="stylesheet" href="css/footer.css">
+
+
+   <!-- Font-awesome link -->
+   <link rel="stylesheet" href="css/font-awesome.css">
+
+   <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+  crossorigin="anonymous"></script> -->
+  <title>Register Company</title>
+
+  <link rel="icon" href="/images/logo_transparent.png" type="image/icon type">
+  <link rel="stylesheet" href="css/style.css">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/styleLogin.css">
+</head>
+<style>
+    .blink {
+      background-color: #1c87c9;
+      -webkit-border-radius: 60px;
+    }
+    @keyframes glowing {
+      0% {
+        background-color: #56debe;
+        box-shadow: 0 0 5px #56debe;
+      }
+      50% {
+        background-color: #2db6aa;
+        box-shadow: 0 0 20px #2db6aa;
+      }
+      100% {
+        background-color: #56debe;
+        box-shadow: 0 0 5px #56debe;
+      }
+    }
+    .blink {
+      animation: glowing 1300ms infinite;
+    }
+  </style>
+<script>
+    if (!localStorage.getItem('token')) {
+      window.location.href = 'register.html'; 
+    }
+  </script>
+<body onload="getCompanyInfo(),getRegisterEmail()">
+
+<button class="back-btn green-btn" onclick="history.back()"><< Back</button>
+
+<div class="icon">
+	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+		class="bi bi-info-circle blink" viewBox="0 0 16 16" id="myinfo"
+		style="margin-left: 42rem; margin-top: -50px;color: #069A8E;">
+		<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+		<path
+			d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+	</svg>
+</div>
+
+<div class="container" id="container">
+	<div class="form-container sign-in-container" >
+		<form action="#">
+			<h4><b>Register Company</b></h4>
+			<span>Add Your Company Information</span>
+			
+			<input type="email" style="padding: 4px; padding-left: 10px" id="email" placeholder="Email" />
+			<input type="text" style="padding: 4px; padding-left: 10px" id="companyName" placeholder="Company Name" />
+			<input type="text" style="padding: 4px; padding-left: 10px" id="address" placeholder="Company Address" />
+			
+      <div style="display: grid; grid-template-columns: auto auto; gap: 10px;">
+			  <input type="text" style="padding: 4px; padding-left: 10px" id="phone" name="company_phone" placeholder="Phone No" value="" />
+		
+			  <input type="text" style="padding: 4px; padding-left: 10px" id="gstin" name="gst" placeholder="Gst/Tin" minlength="12" maxlength="15" title="Enter Registered Company Verified Number, eg: gst no, tin no"/>
+      </div>
+      <textarea style="background-color: #eee;border: none;border-radius: 7px;padding: 13px 15px;
+      margin: 10px 0;width: 100%;padding: 4px; padding-left: 10px;" id="terms" name="comp_terms" placeholder="Terms and Conditions" title="Enter company's terms and conditions"></textarea>
+      
+              <input type="hidden" value="123.456" name="ip_address" id="ip_address" >
+			
+              <br>
+	
+			<button style="padding: 10px;width:100%" onclick="validateAddCompany()" id="addCompany">Done</button>
+		  </form>
+	</div>
+	<div class="overlay-container">
+		<div class="overlay">			
+			<div class="overlay-panel overlay-right">
+				<h1>Invoices4us</h1>
+				<p>Invoices are now way more faster then you think</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="footer-invoice" id="footer" style=" position: fixed; bottom: 0;"></div>
+
+<script src="scripts/common.js"></script>
+
+</body>
+
+<div id="infoModal" class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title">Information</h5>
+          </div>
+          <div class="modal-body" style="padding: 1rem;">
+              <p style="margin: 0;">
+                  1. Enter phone number with country code<br>
+                  2. Enter registered company number as gst or tin number (optional) <br>
+                  eg: Axin38zsodh4 [ length limit of minimun-12 and max-15 characters ]<br>
+                  3. Enter Terms and conditions for the company<br>
+                  eg: No return of products are applicable or company is not responsible for any damage after purchase<br>
+                  4. All fields are editable while creating invoice or work order except registered email id
+              </p>
+          </div>
+          <div class="modal-footer">
+              <span onclick="closeModal()" style="cursor: pointer; font-size: 12px; padding: 4px; background-color: #069A8E; color: #fff;">
+                  Close
+              </span>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+</html>
+ 
+  <script>
+   function validateAddCompany() {
+    var comp_email = document.getElementById('email').value;
+    var Company_name = document.getElementById('companyName').value;
+    var company_add = document.getElementById('address').value;
+    var company_phone = document.getElementById('phone').value;
+    var comp_terms = document.getElementById('terms').value;
+    var gstin = document.getElementById('gstin').value.length;
+    
+    if (!comp_email || !Company_name || !company_add || !company_phone || !comp_terms) {
+        alert('All fields are required.');
+        return;
+    }
+    
+    // Validate phone number (maximum length of 15 digits)
+    var phoneNumberRegex = /^$|^\+?[1-9][0-9]{9,12}$/;
+    if (!phoneNumberRegex.test(company_phone)) {
+        alert('Invalid phone number');
+        return;
+    }
+    addCompanyInfo();
+}
+
+
+
+  // working for information icon 
+    document.getElementById("myinfo").addEventListener("click", function() {
+        var modal = document.getElementById("infoModal");
+        modal.style.display = "block";
+    });
+
+    var closeButton = document.querySelector("#infoModal .close");
+    closeButton.addEventListener("click", function() {
+        var modal = document.getElementById("infoModal");
+        modal.style.display = "none";
+    });
+
+    window.addEventListener("click", function(event) {
+        var modal = document.getElementById("infoModal");
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    });
+
+    function closeModal() {
+        var modal = document.getElementById("infoModal");
+        modal.style.display = "none";
+    }
+
+  </script>
+  

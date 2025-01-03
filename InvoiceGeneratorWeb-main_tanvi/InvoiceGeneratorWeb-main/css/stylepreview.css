@@ -1,0 +1,242 @@
+body {
+    margin-top: 20px;
+    background-color: #EEEEEE;
+  }
+  
+  .my-invoice {
+    padding: 0;
+    
+  }
+  
+  .error {
+    color:red;
+    font-style: bold;
+  }
+  
+  .invoice {
+    position: relative;
+    background-color: #F2F2F2;
+    min-height: 680px;
+    padding: 15px
+  }
+  
+  .invoice header {
+    padding: 10px 0;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #0d6efd;
+  }
+  
+  
+  .title {
+    padding: 0px 0px 40px 0px;
+    width: 90%;
+  }
+  
+  .right_one {
+    text-align: right;
+  }
+  
+  .input-group-sm {
+    width: 65%;
+    margin-top: -16px;
+  }
+  
+  .input-group-lg {
+    width: 100%;
+  }
+  
+  .right {
+    margin-left: auto;
+    margin-right: 0;
+  }
+  
+  .invoice_To {
+    text-align: right;
+    margin-left: auto;
+  }
+  
+  .work1 {
+    padding: 0px 0px 40px 30px;
+    width: 90%;
+    margin-left: auto;
+  }
+  
+  .invoice_e {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  
+  .address {
+    padding-bottom: 20px;
+  }
+  
+  .top {
+    margin-left: auto;
+    margin-right: 10px;
+    width: 25%;
+    margin-bottom: -1px;
+  }
+  
+  .middle {
+    margin-left: auto;
+    margin-right: 10px;
+    margin-top: -17px;
+    width: 25%;
+    border-radius: 0;
+    margin-bottom: -1px;
+  }
+  
+  .bottom {
+    margin-left: auto;
+    margin-right: 10px;
+    width: 25%;
+    margin-top: -17px;
+    margin-bottom: 10px;
+  }
+  
+  
+  
+  .invoice .invoice-details .invoice-id {
+    margin-top: 0;
+    color: #0d6efd;
+  }
+  
+  .invoice main {
+    padding-bottom: 50px
+  }
+  
+  .invoice main .thanks {
+    font-size: 2em;
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .invoice main .notices {
+    padding-left: 6px;
+    text-align: center;
+    background: #e7f2ff;
+    padding: 10px;
+  }
+  
+  .invoice main .notices .notice {
+    font-size: 1.2em
+  }
+  
+  .card {
+    position: relative;
+    min-width: 0;
+    word-wrap: break-word;
+    background-clip: border-box;
+    border: 0 solid rgba(0, 0, 0, 0);
+    border-radius: .25rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 6px 0 #749F82, rgb(218 218 253 / 65%), 0 2px 6px 0 rgb(206 206 238 / 54%);
+  }
+  
+  
+  .invoice footer {
+    width: 100%;
+    text-align: center;
+    color: #777;
+    border-top: 1px solid #aaa;
+    padding: 8px 0
+  }
+  
+  @media print {
+    .invoice {
+      font-size: 11px !important;
+      overflow: hidden !important
+    }
+  
+    .invoice footer {
+      position: absolute;
+      bottom: 10px;
+      page-break-after: always
+    }
+  
+    .invoice>div:last-child {
+      page-break-before: always
+    }
+  }
+  
+  .total {
+    text-align: right;
+    /* background: 0 0; */
+    font-size: 1.2em;
+  }
+  
+  .div {
+    width: 40%;
+    padding: 20px;
+  }
+  
+  .end {
+    width: 0%;
+    margin-left: auto;
+    margin-right: 10px;
+  }
+  
+  .dates {
+    text-align: right;
+    padding: 30px 0px 80px;
+    margin-right: 10px;
+  }
+  
+  .input-group-text {
+    width: 40%;
+    text-align: left;
+    border: 0;
+    background-color: #F2F2F2;
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+  
+  .input-group-currency {
+    width: 50%;
+    text-align: left;
+    border: 0;
+    background-color: #F2F2F2;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-top: -16px;
+  }
+  .inputGroup {
+    text-align: center;
+  }
+  
+  .center {
+    padding-bottom: 50px;
+    
+    justify-content: center;
+    align-items: center;
+  }
+  
+  
+  .cross-button {
+   display: flex;
+   justify-content: flex-end;
+   margin-right: 10px;
+   margin-bottom: 20px;
+  }
+  .form-select{
+    width: 50%;
+  }
+  .top {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex: wrap;
+  }
+  .right_one {
+    
+    flex-direction: column;
+    justify-content: right;
+  }
+  .left_one {
+    /* text-align: center; */
+    justify-content: left;
+  }
+  .name{
+    margin-top: 17px;
+  }
+  

@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Invoices4Us</title>
+  <!-- <link rel="stylesheet" href="css/boxicons.min.css"> -->
+  <!-- <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css"> -->
+  <!-- <link href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css" rel="stylesheet"> -->
+
+  <!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Required JavaScript -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
+
+
+  <link rel="icon" href="/images/logo_transparent.png" type="image/icon type">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <!--<link href="css/bootstrap.min.css" rel="stylesheet">
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/jquery-3.6.1.min.js"></script>
+  <script src="js/bootstrap.js"></script>-->
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=REPLACE_GTAG"></script>
+
+  <script>
+  function updateLinkText() {
+  var company_name = localStorage.getItem('companyName');
+  var linkElement = document.getElementById('add-company');
+  if (company_name === null) {
+    linkElement.innerText = "Add Company";
+  } else {
+    linkElement.innerText = "Edit Company";
+  }
+}
+
+  window.addEventListener('DOMContentLoaded', function() {
+    updateLinkText();
+  });
+
+  </script>
+  
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'REPLACE_GTAG');
+</script>
+<script>
+window.onload = function() {
+  if (localStorage.getItem("token") !== null) {
+    document.getElementById("login-link").style.display = "none";
+    document.getElementById("sign-link").style.display = "none";
+  }
+  else{
+    document.getElementById("list-invoice").style.display = "none";
+    document.getElementById("list-workorder").style.display = "none";
+    document.getElementById("add-company").style.display = "none";
+    document.getElementById("log-out").style.display = "none";
+  }
+};
+
+</script>
+<style>
+  /**ACTUAL CODE ...@media (min-width: 1224px) {
+  #add-company {
+    margin-left: 28rem!important;
+  }
+  #login-link{
+    margin-left: 50rem!important;
+  }
+}
+
+  
+@media (max-width: 412px) {
+  .mobile-navbar {
+    padding: 10px;
+  }
+}
+
+@media (min-width:1230px) and (max-width:1415px){
+  .collapse{
+    font-size: 1rem;
+    display: flex;
+    padding-left: 5px;
+  }
+}
+@media (min-width: 1227px) and (max-width:1415px) {
+  #add-company {
+    margin-left: 20rem!important;
+  }
+  #login-link{
+    margin-left: 40rem!important;
+  }
+}
+
+/* NEW CODE
+ General sidebar styles */
+.navbar-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 150px;
+  height: 100%;
+  background-color: #f8f9fa;
+  border-right: 1px solid #ddd;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 10px;
+  z-index: 1000;
+}
+.navbar-items .nav-link {
+  color: #000;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.navbar-items .nav-link:hover {
+  background-color: #e9ecef;
+}
+
+.navbar-sidebar .navbar-brand {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.navbar-sidebar img {
+  max-width: 100%;
+  height: auto;
+}
+
+.navbar-sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.navbar-sidebar ul li {
+  margin: 10px 0;
+}
+
+.navbar-sidebar ul li a {
+  text-decoration: none;
+  color: #084776;
+  font-size: 16px;
+  display: block;
+  padding: 10px 15px;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+.navbar-sidebar ul li a:hover {
+  background-color: #e9ecef;
+  color: #0056b3;
+}
+
+/* Adjust page content to accommodate sidebar */
+body {
+  margin-left: 250px; /* Matches sidebar width */
+  transition: margin-left 0.3s ease;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .navbar-sidebar {
+    width: 200px;
+  }
+
+  body {
+    margin-left: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar-sidebar {
+    width: 150px;
+  }
+
+  .navbar-sidebar ul li a {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+
+  body {
+    margin-left: 150px;
+  }
+}
+
+
+
+
+
+
+
+</style>
+
+</head>
+<body>
+  <!-- Navigation Bar Strats -->
+<!-- ACTUAL CODE... <nav class="navbar navigation navbar-expand-lg navbar-light navbar-css mobile-navbar">
+    <a href="http://invoices4us.com/" >
+     <img src="/images/Invoices4Us-logos_dark.png" alt="Home" style="width: 110px; height: 55px;">
+     </a>  
+       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+         <span class="navbar-toggler-icon"></span>
+       </button>
+     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">      
+        <div class="navbar-nav">
+          <a class="nav-item nav-link nav-hov active" style="color:#084776;" href="invoice.html">Generate Invoice</a>
+          <a class="nav-item nav-link nav-hov" style="color:#084776;" href="workorder.html">Generate Work Order</a>
+        </div>
+        <div class="navbar-nav ml-auto">
+          <a id="login-link" class="nav-item nav-link nav-hov" style="color:#084776;" href="login.html">
+            Login</a>
+          <a id="sign-link" class="nav-item nav-link nav-hov" style="color:#084776;" href="register.html">Sign Up</a>
+          <a id="list-invoice" class="nav-item nav-link nav-hov" style="color:#084776;" href="invoiceRecord.html">Invoice History</a>
+          <a id="list-workorder" class="nav-item nav-link nav-hov" style="color:#084776;" href="workorderRecord.html">Workorder History</a>
+          <a id="add-company" class="nav-item nav-link nav-hov" style="color:#084776;" href="addCompany.html">Add Company</a>
+          <a id="log-out" class="nav-item nav-link nav-hov" style="color:#084776;" href="#">Logout</a>
+        </div>        
+     </div>
+   </nav>-->
+   <!--NEW CODE-->
+   <nav class="navbar-sidebar">
+    <div class="navbar-brand">
+      <a href="http://invoices4us.com/">
+        <img src="./images/Invoices4Us-logos_dark.png" alt="Home" style="width: 110px; height: 55px;">
+      </a>
+    </div>
+    <ul class="navbar-items">
+      <li><a href="invoice.html"> Generate Invoices</a></li>
+      <li><a href="workorder.html">Generate Work Order</a></li>
+      <li><a id="login-link" href="login.html">Login</a></li>
+      <li><a id="sign-link" href="register.html">Sign Up</a></li>
+      <li><a id="list-invoice" href="invoiceRecord.html">Invoice History</a></li>
+      <li><a id="list-workorder" href="workorderRecord.html">Workorder History</a></li>
+      <li><a id="add-company" href="addCompany.html">Add Company</a></li>
+      <li><a id="log-out" href="#">Logout</a></li>
+    </ul>
+  </nav>
+   
+   <!--Navigation Bar Ends -->
+ <div class="bg"></div>
+  <div class="bg bg2"></div>
+  <div class="bg bg3"></div>
+  <div class="content">
+    <header class="main_content mb-5">
+      <div class="invoice_head">
+        <h1>Try out the free Invoice Generator</h1>
+        <p>Easy way to handle your transactions</p>
+        <button class="inv_btn" onclick="location.href = 'invoice.html';">Create Invoice</button>
+      </div>
+      <div class="work_bg">
+        <div class="workorder_head">
+          <h1>Make it easy with Work Order</h1>
+          <p>Before Commiting ask for Commitments</p>
+          <button class="get_btn" onclick="location.href = 'workorder.html';">Create Work Order</button>
+        </div>
+      </div>
+    </header>
+  </div>
+  
+
+<!-- Footer Start -->
+<div>
+  <footer class="footer">
+    <div class="container-fluid text-center mt-1 pb-2 pt-2">
+      <div class="row">
+  <span class="footer-content">Powered by <a class="hyper-link" href="http://invoices4us.com/">invoices4us.com</a><br>&#169 Copyright A2ZSolutions LLC. All Rights Reserved</span>
+      </div>
+    </div>
+    </footer>
+</div>
+<!-- Footer finish -->
+</body>
+<script>
+  document.getElementById('log-out').addEventListener('click', function(e) {
+    e.preventDefault(); 
+    localStorage.removeItem('token');
+    window.location.href = '/login.html';
+});
+
+</script>
+</html>
